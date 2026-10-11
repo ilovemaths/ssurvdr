@@ -1,0 +1,20 @@
+test_that("compatibility diagnostic is C1 and isotropic matrices have zero complexity", {
+  B <- diag(3)
+  isotropic <- compute_c1f_weights(B, matrix = diag(3))
+  expect_equal(isotropic$c1f, 0, tolerance = 1e-12)
+  expect_equal(isotropic$complexity_score, rep(0, 3))
+  M <- diag(c(1, 2, 4))
+  weighted <- compute_c1f_weights(B, matrix = M)
+  expected <- 3 / 2 * log(mean(c(1, 2, 4)) / exp(mean(log(c(1, 2, 4)))))
+  expect_equal(weighted$c1f, expected, tolerance = 1e-12)
+  expect_true(all(is.finite(weighted$weights) & weighted$weights > 0))
+  expect_equal(mean(weighted$weights), 1, tolerance = 1e-12)
+})
+
+test_that("weights adapt to the fitted basis without a matrix", {
+  B <- matrix(c(1, 2, 4), ncol = 1)
+  output <- compute_c1f_weights(B, normalise = FALSE)
+  expect_true(is.na(output$c1f))
+  expect_equal(output$complexity_score, rep(0, 3))
+  expect_true(all(diff(output$weights) < 0))
+})

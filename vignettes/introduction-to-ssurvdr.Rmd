@@ -1,0 +1,52 @@
+---
+title: "Survival dimension reduction and row-support selection"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Survival dimension reduction and row-support selection}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+A dense SAVE basis reduces the predictors to a small set of scores. A Cox model
+is fitted to those scores. The row-support path then evaluates subsets of the
+original predictors by truncating the fitted basis and refitting the Cox model.
+
+```{r}
+library(ssurvdr)
+dat <- simulate_ssurvdr(n = 100, p = 12, active = 1:3, seed = 2026)
+fit <- fit_ssurvdr(dat$X, dat$time, dat$status, d = 2,
+                  n_slices = 3, covariance = "mec", backend = "primal")
+fit$criteria
+path <- fit_ssurvdr_sparse_path(dat$X, dat$time, dat$status,
+                               dense_fit = fit, support_grid = c(4, 8, 12))
+path$path
+```
+
+Full support remains in the path so that sparsity is not forced. The procedure
+uses the existing reduced Cox criteria; it adds no separate predictor-support
+penalty. Training criterion selection is not an independent prediction assessment.
+
+## Basis-adaptive weights
+
+```{r}
+weights <- compute_c1f_weights(fit$basis_fit)
+range(weights$weights)
+weights$c1f
+```
+
+With no matrix supplied, weights depend on the estimated basis row norms and the
+scalar diagnostic is missing. With a matrix, the weights also use a
+loading-weighted eigenvalue-dispersion adjustment. The historical `c1f` output
+field contains the C1 arithmetic/geometric eigenvalue expression implemented by
+this package; it does not directly enter the weights.
+
+## Validation
+
+For a test set, reuse the training centring/scaling and fitted basis. Never
+estimate those transformations on the test outcomes. The package's simulation
+evaluation function reports training concordance; the separate research scripts
+implement the thesis validation workflows.

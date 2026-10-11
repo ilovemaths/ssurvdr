@@ -1,0 +1,27 @@
+Package: ssurvdr
+Title: Sparse Survival Dimension Reduction for High-Dimensional Censored Data
+Version: 0.0.0.9006
+Authors@R: 
+    person("Kabir Opeyemi", "Olorede", , "kabir.olorede@kwasu.edu.ng", role = c("aut", "cre"))
+Description: Implements sparse survival sufficient dimension reduction methods
+    for high-dimensional censored data, including covariance-stabilised SAVE,
+    Maximum Entropy Covariance estimation, information-complexity-guided
+    variable weighting, dual-space high-dimensional SAVE computation, row-wise
+    post-estimation sparsification paths, and Cox proportional hazards model
+    selection.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+Depends:
+    R (>= 4.1.0)
+Imports:
+    stats,
+    MASS,
+    survival
+Suggests:
+    testthat (>= 3.0.0),
+    knitr,
+    rmarkdown
+Config/testthat/edition: 3
+VignetteBuilder: knitr

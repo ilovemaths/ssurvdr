@@ -1,0 +1,16 @@
+^ssurvdr\.Rproj$
+^\.Rproj\.user$
+^LICENSE\.md$
+^README\.Rmd$
+^analysis-results$
+^analysis$
+^analysis-data$
+^_backup_before_dual_backend_.*$
+^PATCH_NOTES_DUAL_BACKEND.*\.md$
+^PATCH_NOTES_SPARSE_PATH_.*\.md$
+^ssurvdr_dual_backend\.patch$
+^ssurvdr_v0\.0\.0\.900[234]_.*\.zip$
+
+^outputs$
+^cran-comments\.md$
+^NEWS\.md$
