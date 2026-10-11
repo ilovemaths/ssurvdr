@@ -1,19 +1,22 @@
-## Development candidate 0.0.0.9006
+## Test environments
 
-Sole author and maintainer: Kabir Opeyemi Olorede.
+* Local Windows 11 x64, R 4.6.1
+* Win-builder Windows Server 2022, R-release 4.6.1
+* Win-builder Windows Server 2022, R-devel
+  (2026-10-09 r90655 ucrt)
+* GitHub Actions: package-check workflow completed successfully
 
-## Completed local checks
+## R CMD check results
 
-Ubuntu 24.04.3, R 4.3.3: installation, source build, vignette and manuals passed.
-233 unit assertions passed, with no failures, warnings or skips.
-Local R CMD check --as-cran: 0 errors, 0 warnings, 0 notes.
+0 errors | 0 warnings
 
-Incoming feasibility and remote clock checks were disabled for the local check.
-The PDF manual used R_RD4PDF=times,hyper because Inconsolata was unavailable.
+The local Windows check and both win-builder checks each reported
+one CRAN incoming feasibility NOTE.
 
-## Required before submission
+This is a new submission.
 
-Run the ordinary check on current R-release and R-devel, including Windows.
-Replace this development record with the actual release check results.
-Choose the public release version only after completing those checks.
-No CRAN submission has been made.
+Both win-builder checks also flagged "sparsification" as a possibly
+misspelled word in DESCRIPTION. This is an intentional technical
+term describing row-wise post-estimation sparsification paths.
+
+Examples, tests, vignettes and PDF and HTML manuals passed.
