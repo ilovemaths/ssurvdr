@@ -1,6 +1,6 @@
 Package: ssurvdr
 Title: Sparse Survival Dimension Reduction for High-Dimensional Censored Data
-Version: 0.0.0.9006
+Version: 0.1.0
 Authors@R: 
     person("Kabir Opeyemi", "Olorede", , "kabir.olorede@kwasu.edu.ng", role = c("aut", "cre"))
 Description: Implements sparse survival sufficient dimension reduction methods

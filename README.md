@@ -2,7 +2,7 @@
 
 Survival-informed SAVE dimension reduction with sample or maximum-entropy covariance stabilisation, reduced Cox modelling and information-criterion selection.
 
-This is development candidate 0.0.0.9006, consolidated from the supplied 0.0.0.9004 core and 0.0.0.9005 hotfix. It is not a submitted CRAN release.
+This is release candidate 0.1.0, prepared for initial CRAN submission.
 
 ## Small reproducible example
 
